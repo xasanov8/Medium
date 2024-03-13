@@ -23,7 +23,7 @@ namespace Medium.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<List<User>>> GetAllUsers()
         {
-            var result = await _mediator.Send(new GetAllUsersCommmandQuery());
+            var result = await _mediator.Send(new GetAllUsersQuery());
 
             return Ok(result);
         }
@@ -31,7 +31,7 @@ namespace Medium.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<User>> GetByIdUser(Guid Id)
         {
-            var result = await _mediator.Send(new GetByIdUserCommandQuery()
+            var result = await _mediator.Send(new GetByIdUserQuery()
             {
                 Id = Id
             });

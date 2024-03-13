@@ -41,6 +41,7 @@ namespace Medium.Application.UseCases.MediumUser.Handlers
 
                 await _context.SaveChangesAsync();
 
+                return user;
             }
 
             return null;

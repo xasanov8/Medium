@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Medium.Application.UseCases.MediumUser.Queries
 {
-    public class GetAllUsersCommmandQuery : IRequest<List<User>>
+    public class GetByIdUserQuery : IRequest<User>
     {
+        public Guid Id { get; set; }
     }
 }

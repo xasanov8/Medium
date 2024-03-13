@@ -12,21 +12,21 @@ using System.Threading.Tasks;
 
 namespace Medium.Application.UseCases.MediumUser.Handlers
 {
-    public class GetAllUsersCommandQueryHandler : IRequestHandler<GetAllUsersCommmandQuery, List<User>>
+    public class GetByIdUserQueryHandler : IRequestHandler<GetByIdUserQuery, User>
     {
         private readonly IApplicationDbContext _context;
         private readonly IMapper _mapper;
-        public GetAllUsersCommandQueryHandler(IApplicationDbContext context, IMapper mapper)
+        public GetByIdUserQueryHandler(IApplicationDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<List<User>> Handle(GetAllUsersCommmandQuery request, CancellationToken cancellationToken)
+        public async Task<User> Handle(GetByIdUserQuery request, CancellationToken cancellationToken)
         {
-            var users = await _context.Users.ToListAsync();
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == request.Id && x.isDeleted != true);
 
-            return users;
+            return user;
         }
     }
 }
